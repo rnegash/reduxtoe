@@ -15,6 +15,9 @@
 
 .space {
   border: 0.5px dotted black;
-  padding: 30px;
+  padding: 80px 30px;
   width: 100%;
+}
+.footer {
+  text-align: right;
 }

@@ -21,3 +21,8 @@
 .footer {
   text-align: right;
 }
+
+.header {
+  display: flex;
+  justify-content: space-around;
+}

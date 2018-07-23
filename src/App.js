@@ -15,7 +15,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header>TicTacToe</header>
+        <header className="header">
+          <span>Tic</span>
+          <big>Tac</big>
+          <span>Toe</span>
+        </header>
         <Provider store={store}>
           <Board />
         </Provider>

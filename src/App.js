@@ -6,7 +6,10 @@ import Board from "./components/Board.js";
 import rootReducer from "./reducers/rootReducer.js";
 import "./App.css";
 
-const store = createStore(rootReducer);
+const store = createStore(
+  rootReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 class App extends Component {
   render() {
@@ -16,7 +19,9 @@ class App extends Component {
         <Provider store={store}>
           <Board />
         </Provider>
-        <footer className="footer">by rufael n</footer>
+        <footer className="footer">
+          by rufael <small>n</small>
+        </footer>
       </div>
     );
   }

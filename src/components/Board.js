@@ -10,8 +10,10 @@ const Board = ({ dispatch }) => {
       className="board"
       onClick={e => {
         let space = e.target;
+
         dispatch(spaceClick(space.textContent));
         dispatch(switchPlayer());
+
         if (space.style.backgroundColor !== "gray") {
           space.style.backgroundColor = "gray";
         } else {

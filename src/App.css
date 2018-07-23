@@ -1,0 +1,20 @@
+.App {
+  width: 600px;
+  margin: 50px auto;
+}
+
+.board {
+  display: flex;
+  flex-direction: column;
+}
+
+.column {
+  display: flex;
+  justify-content: space-around;
+}
+
+.space {
+  border: 0.5px dotted black;
+  padding: 30px;
+  width: 100%;
+}

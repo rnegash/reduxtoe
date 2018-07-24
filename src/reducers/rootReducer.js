@@ -17,10 +17,6 @@ export default function reducer(state = initialState, action) {
 }
 
 function playerSwitch(currentPlayer) {
-  console.log(currentPlayer);
-
   let nextPlayer = currentPlayer ? 0 : 1;
-  console.log(currentPlayer);
-
   return nextPlayer;
 }

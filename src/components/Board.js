@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
+
 import Space from "./Space.js";
-import { spaceClick } from "../actions/actions.js";
-import { switchPlayer } from "../actions/actions.js";
+import { spaceClick, switchPlayer } from "../actions/actions.js";
 
 const Board = ({ dispatch }) => {
   return (
@@ -10,10 +10,11 @@ const Board = ({ dispatch }) => {
       className="board"
       onClick={e => {
         let space = e.target;
+        let bg = space.style.backgroundColor;
 
         dispatch(spaceClick(space.textContent));
         dispatch(switchPlayer());
-
+        //props.currentplayer ? bg = "gray" : bg = "pink"
         if (space.style.backgroundColor !== "gray") {
           space.style.backgroundColor = "gray";
         } else {

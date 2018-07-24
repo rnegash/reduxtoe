@@ -6,7 +6,11 @@ export default function reducer(state = initialState, action) {
   switch (action.type) {
     case SPACE_CLICK:
       return {
-        gameState: (state.gameState[action.spaceId] = state.currentPlayer),
+        gameState: setPlayerPosition(
+          state.gameState,
+          action.spaceId,
+          state.currentPlayer
+        ),
         ...state
       };
     case SWITCH_PLAYER:
@@ -17,6 +21,10 @@ export default function reducer(state = initialState, action) {
     default:
       return state;
   }
+}
+
+function setPlayerPosition(gameArray, spaceId, currentPlayer) {
+  return (gameArray[spaceId] = currentPlayer);
 }
 
 function playerSwitch(currentPlayer) {

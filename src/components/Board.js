@@ -17,9 +17,6 @@ const Board = ({ dispatch, state, currentPlayer }) => {
         currentPlayer
           ? (space.style.backgroundColor = "gray")
           : (space.style.backgroundColor = "pink");
-
-        //const { currentPlayer } = props;
-        console.log("currentPlayer", currentPlayer);
       }}
     >
       <div className="column">

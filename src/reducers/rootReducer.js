@@ -5,7 +5,10 @@ let initialState = { gameState: new Array(9), currentPlayer: 0 };
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case SPACE_CLICK:
-      return state;
+      return {
+        gameState: (state.gameState[action.spaceId] = state.currentPlayer),
+        ...state
+      };
     case SWITCH_PLAYER:
       return {
         ...state,

@@ -4,22 +4,22 @@ import { connect } from "react-redux";
 import Space from "./Space.js";
 import { spaceClick, switchPlayer } from "../actions/actions.js";
 
-const Board = ({ dispatch }) => {
+const Board = ({ dispatch, state, currentPlayer }) => {
   return (
     <div
       className="board"
       onClick={e => {
         let space = e.target;
-        let bg = space.style.backgroundColor;
+        //let bg = space.style.backgroundColor;
 
         dispatch(spaceClick(space.textContent));
         dispatch(switchPlayer());
-        //props.currentplayer ? bg = "gray" : bg = "pink"
-        if (space.style.backgroundColor !== "gray") {
-          space.style.backgroundColor = "gray";
-        } else {
-          space.style.backgroundColor = "white";
-        }
+        currentPlayer
+          ? (space.style.backgroundColor = "gray")
+          : (space.style.backgroundColor = "pink");
+
+        //const { currentPlayer } = props;
+        console.log("currentPlayer", currentPlayer);
       }}
     >
       <div className="column">
@@ -41,4 +41,11 @@ const Board = ({ dispatch }) => {
   );
 };
 
-export default connect()(Board);
+const mapStateToProps = state => {
+  return {
+    state: state,
+    currentPlayer: state.currentPlayer
+  };
+};
+
+export default connect(mapStateToProps)(Board);

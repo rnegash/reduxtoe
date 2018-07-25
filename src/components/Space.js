@@ -1,8 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 
-class Space extends Component {
-  render() {
-    return <span className="space">{this.props.position}</span>;
-  }
-}
+const Space = ({ position }) => {
+  return <span className="space">{position}</span>;
+};
 export default Space;

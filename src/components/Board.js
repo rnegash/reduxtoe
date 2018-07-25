@@ -4,14 +4,14 @@ import { connect } from "react-redux";
 import Space from "./Space.js";
 import { spaceClick, switchPlayer } from "../actions/actions.js";
 
-const Board = ({ dispatch, gameState, currentPlayer }) => {
+const Board = ({ dispatch, gameState, currentPlayer, switchPlayer }) => {
   return (
     <div
       className="board"
       onClick={event => {
         let space = event.target;
-        dispatch(spaceClick(space.textContent));
-        dispatch(switchPlayer());
+        //dispatch(spaceClick(space.textContent));
+        switchPlayer();
 
         setPlayerPositionColor(event, currentPlayer);
 
@@ -69,4 +69,10 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(Board);
+const mapDispatchToProps = dispatch => {
+  return {
+    switchPlayer: () => dispatch(switchPlayer())
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Board);

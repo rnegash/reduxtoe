@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import Space from "./Space.js";
 import { spaceClick, switchPlayer } from "../actions/actions.js";
 
-const Board = ({ dispatch, gameState, currentPlayer, onTileClick }) => {
+const Board = ({ gameState, currentPlayer, onTileClick }) => {
   return (
     <div
       className="board"

@@ -11,9 +11,7 @@ const Board = ({ dispatch, gameState, currentPlayer, onTileClick }) => {
       onClick={event => {
         let spaceId = event.target.textContent;
         onTileClick(spaceId);
-
         setPlayerPositionColor(event, currentPlayer);
-        //what was the benefits of this approach?
         hasGameEnded(gameState) ? console.log("win") : console.log("play on");
       }}
     >

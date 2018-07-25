@@ -57,7 +57,7 @@ function checkFormation(gameState) {
     if (
       gameState[formations[i][0]] === gameState[formations[i][1]] &&
       gameState[formations[i][1]] === gameState[formations[i][2]] &&
-      gameState[formations[i][0]] != "-"
+      gameState[formations[i][0]] !== "-"
     ) {
       console.log("win");
     }

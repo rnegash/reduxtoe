@@ -24,10 +24,6 @@ export default function reducer(state = initialState, action) {
 }
 
 function setPlayerPosition(gameArray, spaceId, currentPlayer) {
-<<<<<<< HEAD
-  //return (gameArray[spaceId] = currentPlayer);
-=======
->>>>>>> recognize-formations
   let updatedArray = gameArray;
   updatedArray[spaceId] = currentPlayer;
   return updatedArray;

@@ -1,6 +1,11 @@
 import { SPACE_CLICK, SWITCH_PLAYER } from "../actions/actions.js";
 
-let initialState = { gameState: new Array(9).fill("-"), currentPlayer: 0 };
+let initialState = {
+  gameState: new Array(9).fill({
+    player: null
+  }),
+  currentPlayer: 0
+};
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
@@ -25,7 +30,7 @@ export default function reducer(state = initialState, action) {
 
 function setPlayerPosition(gameArray, spaceId, currentPlayer) {
   let updatedArray = gameArray;
-  updatedArray[spaceId] = currentPlayer;
+  updatedArray[spaceId].player = currentPlayer;
   return updatedArray;
 }
 

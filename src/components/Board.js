@@ -4,19 +4,21 @@ import { connect } from "react-redux";
 import Space from "./Space.js";
 import { spaceClick, switchPlayer } from "../actions/actions.js";
 
-const Board = ({ dispatch, state, currentPlayer }) => {
+const Board = ({ dispatch, gameState, currentPlayer }) => {
   return (
     <div
       className="board"
-      onClick={e => {
-        let space = e.target;
+      onClick={event => {
+        let space = event.target;
         //let bg = space.style.backgroundColor;
 
         dispatch(spaceClick(space.textContent));
         dispatch(switchPlayer());
-        currentPlayer
-          ? (space.style.backgroundColor = "gray")
-          : (space.style.backgroundColor = "pink");
+
+        setPlayerPositionColor(event, currentPlayer);
+        //const { currentPlayer } = props;
+        //console.log("game", gameState);
+        checkFormation(gameState);
       }}
     >
       <div className="column">
@@ -38,9 +40,36 @@ const Board = ({ dispatch, state, currentPlayer }) => {
   );
 };
 
+function setPlayerPositionColor(e, currentPlayer) {
+  let space = e.target;
+  currentPlayer
+    ? (space.style.backgroundColor = "gray")
+    : (space.style.backgroundColor = "pink");
+}
+
+function checkFormation(gameState) {
+  const horizontals = [[0, 1, 2], [3, 4, 5], [6, 7, 8]];
+  const verticals = [[0, 3, 6], [1, 4, 7], [2, 5, 8]];
+  const diagonals = [[0, 4, 8], [2, 4, 6]];
+  const formations = horizontals.concat(verticals, diagonals);
+  console.log("----------");
+  for (let i = 0; i < formations.length; i++) {
+    if (
+      gameState[formations[i][0]] === gameState[formations[i][1]] &&
+      gameState[formations[i][1]] === gameState[formations[i][2]] &&
+      gameState[formations[i][0]] != "-"
+    ) {
+      console.log("win");
+    }
+  }
+}
+
+//console.log(gameState);
+//if the content of gameStates indices at the formations subarrays is the same, return win
+
 const mapStateToProps = state => {
   return {
-    state: state,
+    gameState: state.gameState,
     currentPlayer: state.currentPlayer
   };
 };

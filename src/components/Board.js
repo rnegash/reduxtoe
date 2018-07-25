@@ -4,13 +4,19 @@ import { connect } from "react-redux";
 import Space from "./Space.js";
 import { spaceClick, switchPlayer } from "../actions/actions.js";
 
-const Board = ({ dispatch, gameState, currentPlayer, switchPlayer }) => {
+const Board = ({
+  dispatch,
+  gameState,
+  currentPlayer,
+  switchPlayer,
+  spaceClick
+}) => {
   return (
     <div
       className="board"
       onClick={event => {
         let space = event.target;
-        //dispatch(spaceClick(space.textContent));
+        spaceClick(space.textContent);
         switchPlayer();
 
         setPlayerPositionColor(event, currentPlayer);
@@ -71,7 +77,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    switchPlayer: () => dispatch(switchPlayer())
+    switchPlayer: () => dispatch(switchPlayer()),
+    spaceClick: spaceId => dispatch(spaceClick(spaceId))
   };
 };
 

@@ -4,20 +4,13 @@ import { connect } from "react-redux";
 import Space from "./Space.js";
 import { spaceClick, switchPlayer } from "../actions/actions.js";
 
-const Board = ({
-  dispatch,
-  gameState,
-  currentPlayer,
-  switchPlayer,
-  spaceClick
-}) => {
+const Board = ({ dispatch, gameState, currentPlayer, onTileClick }) => {
   return (
     <div
       className="board"
       onClick={event => {
         let space = event.target;
-        spaceClick(space.textContent);
-        switchPlayer();
+        onTileClick(space.textContent);
 
         setPlayerPositionColor(event, currentPlayer);
         //what was the benefits of this approach?
@@ -76,8 +69,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    switchPlayer: () => dispatch(switchPlayer()),
-    spaceClick: spaceId => dispatch(spaceClick(spaceId))
+    onTileClick: spaceId => {
+      dispatch(switchPlayer());
+      dispatch(spaceClick(spaceId));
+    }
   };
 };
 

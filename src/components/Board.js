@@ -20,8 +20,8 @@ const Board = ({
         switchPlayer();
 
         setPlayerPositionColor(event, currentPlayer);
-
-        checkFormation(gameState);
+        //what was the benefits of this approach?
+        hasGameEnded(gameState) ? console.log("win") : console.log("play on");
       }}
     >
       <div className="column">
@@ -50,22 +50,21 @@ function setPlayerPositionColor(e, currentPlayer) {
     : (space.style.backgroundColor = "pink");
 }
 
-function checkFormation(gameState) {
+function hasGameEnded(gameState) {
   const horizontals = [[0, 1, 2], [3, 4, 5], [6, 7, 8]];
   const verticals = [[0, 3, 6], [1, 4, 7], [2, 5, 8]];
   const diagonals = [[0, 4, 8], [2, 4, 6]];
   const formations = horizontals.concat(verticals, diagonals);
-  console.log("----------");
-
   for (let i = 0; i < formations.length; i++) {
     if (
       gameState[formations[i][0]] === gameState[formations[i][1]] &&
       gameState[formations[i][1]] === gameState[formations[i][2]] &&
       gameState[formations[i][0]] !== "-"
     ) {
-      console.log("win!");
+      return true;
     }
   }
+  return false;
 }
 
 const mapStateToProps = state => {

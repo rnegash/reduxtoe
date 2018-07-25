@@ -16,9 +16,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="header">
-          <span>Tic</span>
-          <big>Tac</big>
-          <span>Toe</span>
+          Tic<big>Tac</big>Toe
         </header>
         <Provider store={store}>
           <Board />

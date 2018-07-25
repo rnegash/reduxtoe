@@ -9,8 +9,8 @@ const Board = ({ dispatch, gameState, currentPlayer, onTileClick }) => {
     <div
       className="board"
       onClick={event => {
-        let space = event.target;
-        onTileClick(space.textContent);
+        let spaceId = event.target.textContent;
+        onTileClick(spaceId);
 
         setPlayerPositionColor(event, currentPlayer);
         //what was the benefits of this approach?

@@ -10,14 +10,11 @@ const Board = ({ dispatch, gameState, currentPlayer }) => {
       className="board"
       onClick={event => {
         let space = event.target;
-        //let bg = space.style.backgroundColor;
-
         dispatch(spaceClick(space.textContent));
         dispatch(switchPlayer());
 
         setPlayerPositionColor(event, currentPlayer);
-        //const { currentPlayer } = props;
-        //console.log("game", gameState);
+
         checkFormation(gameState);
       }}
     >
@@ -53,6 +50,7 @@ function checkFormation(gameState) {
   const diagonals = [[0, 4, 8], [2, 4, 6]];
   const formations = horizontals.concat(verticals, diagonals);
   console.log("----------");
+
   for (let i = 0; i < formations.length; i++) {
     if (
       gameState[formations[i][0]] === gameState[formations[i][1]] &&
@@ -63,9 +61,6 @@ function checkFormation(gameState) {
     }
   }
 }
-
-//console.log(gameState);
-//if the content of gameStates indices at the formations subarrays is the same, return win
 
 const mapStateToProps = state => {
   return {

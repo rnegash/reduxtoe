@@ -1,38 +1,56 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { connect } from "react-redux";
 
 import Space from "./Space.js";
-import { spaceClick, switchPlayer } from "../actions/actions.js";
+import Win from "./Win.js";
+import { spaceClick, switchPlayer, setWinnerId } from "../actions/actions.js";
 
-const Board = ({ gameState, currentPlayer, onTileClick }) => {
+const Board = ({
+  gameState,
+  currentPlayer,
+  onTileClick,
+  setWinnerId,
+  winnerId
+}) => {
   return (
-    <div
-      className="board"
-      onClick={event => {
-        let spaceId = event.target.textContent;
-        onTileClick(spaceId);
-        setPlayerPositionColor(event, currentPlayer);
-        hasGameEnded(gameState) ? console.log("win") : console.log("play on");
-      }}
-    >
-      <div className="column">
-        <Space position="0" />
-        <Space position="1" />
-        <Space position="2" />
+    <Fragment>
+      <div
+        className="board"
+        onClick={event => {
+          let spaceId = event.target.textContent;
+          if (!hasGameEnded(gameState)) {
+            onTileClick(spaceId);
+            setPlayerPositionColor(event, currentPlayer);
+            setWinnerId(currentPlayer);
+          }
+        }}
+      >
+        {hasGameEnded(gameState) && renderPlayerHasWon(winnerId)}
+        <div className="column">
+          <Space position="0" />
+          <Space position="1" />
+          <Space position="2" />
+        </div>
+        <div className="column">
+          <Space position="3" />
+          <Space position="4" />
+          <Space position="5" />
+        </div>
+        <div className="column">
+          <Space position="6" />
+          <Space position="7" />
+          <Space position="8" />
+        </div>
       </div>
-      <div className="column">
-        <Space position="3" />
-        <Space position="4" />
-        <Space position="5" />
-      </div>
-      <div className="column">
-        <Space position="6" />
-        <Space position="7" />
-        <Space position="8" />
-      </div>
-    </div>
+    </Fragment>
   );
 };
+
+function renderPlayerHasWon(currentPlayer) {
+  const playerId = currentPlayer + 1;
+  console.log(`Congratulations! Player ${playerId} has won`);
+  return <Win playerId={playerId} />;
+}
 
 function setPlayerPositionColor(e, currentPlayer) {
   let space = e.target;
@@ -61,6 +79,7 @@ function hasGameEnded(gameState) {
 const mapStateToProps = state => {
   return {
     gameState: state.gameState,
+    winnerId: state.winnerId,
     currentPlayer: state.currentPlayer
   };
 };
@@ -68,8 +87,11 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onTileClick: spaceId => {
-      dispatch(switchPlayer());
       dispatch(spaceClick(spaceId));
+      dispatch(switchPlayer());
+    },
+    setWinnerId: playerId => {
+      dispatch(setWinnerId(playerId));
     }
   };
 };

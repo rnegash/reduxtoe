@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 
-import Board from "./components/Board.js";
+import Board from "./components/Board/Board.js";
 import rootReducer from "./reducers/rootReducer.js";
 import "./App.css";
 

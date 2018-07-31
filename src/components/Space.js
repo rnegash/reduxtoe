@@ -1,6 +1,10 @@
 import React from "react";
 
-const Space = ({ position }) => {
-  return <span className="space">{position}</span>;
+const Space = ({ position, onTileClick, index }) => {
+  return (
+    <span className="space" onClick={() => onTileClick(index)}>
+      {index}
+    </span>
+  );
 };
 export default Space;

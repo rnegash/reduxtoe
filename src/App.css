@@ -11,12 +11,13 @@
 .column {
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 .space {
   border: 0.5px dotted black;
-  padding: 80px 30px;
-  width: 100%;
+  padding: 50px;
+  width: 99px;
 }
 .footer {
   text-align: right;

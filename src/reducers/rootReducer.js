@@ -5,7 +5,7 @@ import {
 } from "../actions/actions.js";
 
 let initialState = {
-  gameState: new Array(9).fill("-"),
+  gameState: new Array(9).fill({ player: null }),
   currentPlayer: 0,
   winnerId: null
 };
@@ -39,7 +39,8 @@ export default function reducer(state = initialState, action) {
 
 function setPlayerPosition(gameArray, spaceId, currentPlayer) {
   let updatedArray = gameArray;
-  updatedArray[spaceId] = currentPlayer;
+  console.log(updatedArray[spaceId]);
+  updatedArray[spaceId] = { player: currentPlayer };
   return updatedArray;
 }
 

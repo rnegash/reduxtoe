@@ -30,6 +30,7 @@ const Board = ({
             <Space
               {...gameSpace}
               onTileClick={onTileClick}
+              currentPlayer={currentPlayer}
               index={index}
               key={index}
             />

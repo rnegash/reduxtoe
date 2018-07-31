@@ -39,7 +39,6 @@ export default function reducer(state = initialState, action) {
 
 function setPlayerPosition(gameArray, spaceId, currentPlayer) {
   let updatedArray = gameArray;
-  console.log(updatedArray[spaceId]);
   updatedArray[spaceId] = { player: currentPlayer };
   return updatedArray;
 }

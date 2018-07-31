@@ -54,7 +54,6 @@ function setPlayerPositionColor(e, currentPlayer) {
 }
 
 function hasGameEnded(gameBoard) {
-  console.log(gameBoard[0].player);
   const horizontals = [[0, 1, 2], [3, 4, 5], [6, 7, 8]];
   const verticals = [[0, 3, 6], [1, 4, 7], [2, 5, 8]];
   const diagonals = [[0, 4, 8], [2, 4, 6]];

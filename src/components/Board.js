@@ -60,12 +60,13 @@ function hasGameEnded(gameBoard) {
   const diagonals = [[0, 4, 8], [2, 4, 6]];
   const formations = horizontals.concat(verticals, diagonals);
   for (let i = 0; i < formations.length; i++) {
+    let position1 = gameState[formations[i][0]];
+    let position2 = gameState[formations[i][1]];
+    let position3 = gameState[formations[i][2]];
     if (
-      gameBoard[formations[i][0]].player ===
-        gameBoard[formations[i][1]].player &&
-      gameBoard[formations[i][1]].player ===
-        gameBoard[formations[i][2]].player &&
-      gameBoard[formations[i][0]].player !== null
+      isSamePlayer(position1, position2) &&
+      isSamePlayer(position2, position3) &&
+      gameState[formations[i][0]] !== "-"
     ) {
       return true;
     }
@@ -73,11 +74,11 @@ function hasGameEnded(gameBoard) {
   return false;
 }
 
-const processGameBoard = gameBoard =>
-  gameBoard.map((item, index) => ({
-    ...item,
-    index
-  }));
+function isSamePlayer(space1, space2) {
+  let isSame = false;
+  space1 === space2 ? (isSame = true) : (isSame = false);
+  return isSame;
+}
 
 const mapStateToProps = state => {
   return {
